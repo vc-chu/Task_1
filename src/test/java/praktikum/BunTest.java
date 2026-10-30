@@ -6,21 +6,33 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DisplayName("Тесты класса Bun")
-public class BunTest {
+class BunTest {
 
-    @ParameterizedTest(name = "name={0}, price={1}")
+    @ParameterizedTest(name = "name = {0}, price = {1}")
     @CsvSource({
-            "black bun, 100.0",
-            "white bun, 200.0",
-            "red bun, 300.0",
+            "black bun, 100",
+            "white bun, 200",
+            "red bun, 300",
             "Флюгерхаус, 9.99"
     })
-    @DisplayName("Геттеры возвращают имя и цену булочки")
-    public void gettersReturnProvidedValues(String name, float price) {
+    @DisplayName("Геттер getName возвращает имя булочки")
+    void getNameReturnsProvidedName(String name, float price) {
         Bun bun = new Bun(name, price);
 
         assertEquals(name, bun.getName());
-        assertEquals(price, bun.getPrice());
+    }
+
+    @ParameterizedTest(name = "name = {0}, price = {1}")
+    @CsvSource({
+            "black bun, 100",
+            "white bun, 200",
+            "red bun, 300",
+            "Флюгерхаус, 9.99"
+    })
+    @DisplayName("Геттер getPrice возвращает цену булочки")
+    void getPriceReturnsProvidedPrice(String name, float price) {
+        Bun bun = new Bun(name, price);
+
+        assertEquals(price, bun.getPrice(), 0.001f);
     }
 }
